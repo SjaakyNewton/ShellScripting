@@ -1,0 +1,30 @@
+  GNU nano 2.9.3                                   voerUit                                             
+
+#!/usr/bin/env bash
+
+#Ik haal hier onder de extensie uit de $1
+ext=".${1##*.}"
+
+#Ik check op de functie wat de extensie is.
+case $ext in
+        .py)
+        #Voer het met python uit
+        python3 $1
+        ;;
+        .cpp)
+        #Code printen met cat voor c++
+        cat $1
+        ;;
+        .cc)
+        #Code printen met cat voor c++
+        cat $1
+        ;;
+        .sh)
+        #Voer het met bash uit
+        bash $1
+        ;;
+        *)
+        echo "FOUT!"
+        echo "Het moet een .py, .sh of .cc zijn!"
+        ;;
+esac
