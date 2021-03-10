@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+echo "Voer gebruikersnaam in:"
+
+read name
+
+if [ -n $name ]
+then
+	name=$(whoami)
+	echo "Welkom $name"
+else
+	echo "Welkom $name"
+fi
+
+password=false
+while [ $password == false ]
+do
+	echo "Voer het wachtwoord in:"
+	read wachtwoord1
+	echo "Herhaal het wachtwoord:"
+	read wachtwoord2
+	getal="${#wachtwoord1}"
+	if [ $getal -lt 8 ]
+	then
+		echo "Wachtwoord is niet lang genoeg"
+		echo "Probeer opnieuw"
+	elif [ $wachtwoord1 = $wachtwoord2 ]
+	then
+		password=true
+		echo "U logt in $name"
+	else
+		echo "Wachtwoord is niet gelijk aan elkaar"
+		echo "Probeer opnieuw"
+fi 
+done
+
+file=$1
+tijdelijk=tijdelijk.txt
+[ -f $tijdelijk ] && rm $tijdelijk
+echo $wachtwoord1 >> $tijdelijk
+codeer=($(md5sum $tijdelijk))
+echo $name >> $file
+echo $codeer >> $file
+rm $tijdelijk

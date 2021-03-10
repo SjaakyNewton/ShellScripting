@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+pad=$(find $1 -maxdepth 1 )
+commando=$2
+logFile=$3
+
+[ -f $logFile  ] && rm $logFile
+echo $pad
+for bestand in $pad; do
+uitvoer=$($commando $bestand 1>/dev/null ; echo $?);
+if [ $uitvoer  = 0 ] ; then
+	echo 0 >> $logFile
+
+elif [ $uitvoer = 1 ]; then
+	echo 1 >> $logFile
+
+else
+	echo Gaat totaal wat anders fout >> $logFile
+fi
+done
+
+#$commando $bestand >/dev/null 2>&1 ; \$? >> $logFile
+
+#Je geeft een pad meer voor het log bestand
+#Je checkt of cat er op werkt
+#status van de check gaat het log bestand in.
