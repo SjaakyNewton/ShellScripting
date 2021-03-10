@@ -1,0 +1,7 @@
+
+#!/usr/bin/env bash
+
+mkdir ~/v1eos-practica/shell/bestanden/Afbeeldingen
+find ~/v1eos-practica/shell/bestanden -name "*.jpg" -exec mv '{}' ~/v1eos-practica/shell/bestanden/Afb$
+find ~/v1eos-practica/shell/bestanden -name "*.png" -exec mv '{}' ~/v1eos-practica/shell/bestanden/Afb$
+
