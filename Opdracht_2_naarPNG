@@ -1,0 +1,21 @@
+
+#!/usr/bin/env bash
+
+mkdir ~/v1eos-practica/shell/bestanden/AfbeeldingenOud
+ext=$( find $1 -name "*.jpg" )
+echo $ext
+        #jpg omzetten naar een png
+
+#Check wat JPEG bestanden zijn
+#Zet alle JPEG bestanden naar PNG van een 128x128 pixels
+
+#$1 is het path naar de files
+#Hier check je alle JPEG bestanden of wel JPG bestanden
+
+#convert -size geometry 128x128 #Dit zou de image moeten veranderen qua grote
+
+for plaatje in $ext; do
+        echo $plaatje
+        convert -resize 128x128 -format png $plaatje "$1/$( basename $plaatje .jpg ).png"
+        mv $plaatje ~/v1eos-practica/shell/bestanden/AfbeeldingenOud
+done
